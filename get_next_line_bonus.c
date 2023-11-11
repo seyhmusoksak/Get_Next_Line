@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soksak <soksak@42istanbul.com.tr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 19:48:49 by soksak            #+#    #+#             */
-/*   Updated: 2023/11/11 17:57:15 by soksak           ###   ########.fr       */
+/*   Created: 2023/11/11 17:53:03 by soksak            #+#    #+#             */
+/*   Updated: 2023/11/11 17:59:05 by soksak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*take_line(char *buffer)
 {
@@ -85,15 +85,15 @@ char	*remove_line(char *buffer, size_t len)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = create_line(fd, buffer);
-	if (!buffer)
+	buffer[fd] = create_line(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (NULL);
-	line = take_line(buffer);
-	buffer = remove_line(buffer, ft_strlen(line));
+	line = take_line(buffer[fd]);
+	buffer[fd] = remove_line(buffer[fd], ft_strlen(line));
 	return (line);
 }
