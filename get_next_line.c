@@ -6,7 +6,7 @@
 /*   By: soksak <soksak@42istanbul.com.tr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:48:49 by soksak            #+#    #+#             */
-/*   Updated: 2023/11/08 18:34:15 by soksak           ###   ########.fr       */
+/*   Updated: 2023/11/11 16:31:57 by soksak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ char	*take_line(char *buffer)
 		line[i] = buffer[i];
 		i++;
 	}
-	line[i] = '\n';
-	line[i + 1] = '\0';
+	if (buffer[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
 	return (line);
 }
 
