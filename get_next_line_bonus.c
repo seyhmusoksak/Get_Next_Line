@@ -6,7 +6,7 @@
 /*   By: soksak <soksak@42istanbul.com.tr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:53:03 by soksak            #+#    #+#             */
-/*   Updated: 2023/11/11 17:59:05 by soksak           ###   ########.fr       */
+/*   Updated: 2023/11/14 14:42:21 by soksak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ char	*take_line(char *buffer)
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = (char *)malloc(sizeof(char) * i + 2);
+	if (buffer[i] == '\n')
+		i += 1;
+	line = (char *)malloc(sizeof(char) * i + 1);
 	if (!line)
 		return (NULL);
 	i = 0;
